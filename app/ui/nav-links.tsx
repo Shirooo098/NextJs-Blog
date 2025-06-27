@@ -23,7 +23,7 @@ export default function NavLinks(){
                         className={clsx(
                             'flex grow justify-center',
                             {
-                                ' text-blue-600': pathname === link.href,
+                                ' text-blue-900': pathname === link.href,
                             }
                         )}
                     >
