@@ -21,7 +21,7 @@ export default function NavLinks(){
                         key={link.name}
                         href={link.href}
                         className={clsx(
-                            'flex grow justify-center',
+                            'flex justify-center grow items-center text-xl',
                             {
                                 ' text-blue-900': pathname === link.href,
                             }
