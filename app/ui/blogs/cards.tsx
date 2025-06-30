@@ -4,7 +4,7 @@ import { manRope } from "../fonts";
 
 export default function Cards() {
   return (
-    <div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-16 mt-16">
         {cardsData.map((card, index) => (
             <Card
                 key={index}
@@ -30,17 +30,21 @@ export function Card({
     imageUrl: string
 }){
     return(
-        <div className="">
-            <div className="">
+        <article className="relative col-span-1 row-span-1">
+            <div className="w-full rounded-xl overflow-hidden flex flex-col items-center">
                 <Image
                     src={imageUrl}
                     alt={title}
+                    height={500}
                     width={500}
-                    height={500}/>
+                    className="aspect-[4/3] size-full object-cover object-center"
+                />
             </div>
-            <h4 className={`${manRope}`}>{category}</h4>
-            <p className={`${manRope}`}>{title}</p>
-            <p className={`${manRope}`}>{date}</p>
-        </div>
+            <div className="flex flex-col mt-4 w-full">
+                <h4 className={`${manRope} uppercase text-xs sm:text-sm text-blue-900`}>{category}</h4>
+                <h2 className={`${manRope} capitalize font-medium sm:text-lg line-clamp-2 my-1`}>{title}</h2>
+                <p className={`${manRope} capitalize font-medium text-gray-500`}>{date}</p>
+            </div>
+        </article>
     )
 }
