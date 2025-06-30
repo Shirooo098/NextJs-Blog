@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { robotoMono } from "./fonts";
 
 const links = [
     { name: 'Home', href: '/'},
@@ -21,7 +22,7 @@ export default function NavLinks(){
                         key={link.name}
                         href={link.href}
                         className={clsx(
-                            'flex justify-center grow items-center text-xl',
+                            `${robotoMono.className} flex justify-center grow items-center text-xl`,
                             {
                                 ' text-blue-900': pathname === link.href,
                             }

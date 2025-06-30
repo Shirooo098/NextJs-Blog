@@ -41,9 +41,9 @@ export function Card({
                 />
             </div>
             <div className="flex flex-col mt-4 w-full">
-                <h4 className={`${manRope} uppercase text-xs sm:text-sm text-blue-900`}>{category}</h4>
-                <h2 className={`${manRope} capitalize font-medium sm:text-lg line-clamp-2 my-1`}>{title}</h2>
-                <p className={`${manRope} capitalize font-medium text-gray-500`}>{date}</p>
+                <h4 className={`${manRope.className} uppercase text-semibold sm:text-sm text-blue-900`}>{category}</h4>
+                <h2 className={`${manRope.className} capitalize font-semibold sm:text-lg line-clamp-2 my-1`}>{title}</h2>
+                <p className={`${manRope.className} capitalize font-semibold text-gray-500`}>{date}</p>
             </div>
         </article>
     )
