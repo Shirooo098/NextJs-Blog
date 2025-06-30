@@ -8,16 +8,14 @@ export default function Footer(){
             <div className="mt-16 mb-8">
                 <DevblogLogo variant="dark"/>
             </div>
-            <h2 className={`${robotoMono.className} text-white text-3xl font-semibold`}>
+            <h2 className={`${robotoMono.className} text-white text-2xl sm:text-3xl lg:text-4xl font-semibold`}>
                 Get Updates
             </h2>
-            <p className={`${robotoMono.className} text-white mt-4`}>
-                Subscribe to get a fresh update from my blog. 
+            <p className={`${robotoMono.className} text-white mt-4 text-center w-full sm:3/5 text-sm sm:text-base`}>
+                Subscribe to get a fresh update from my blog.
+                Join to stay up to date with latest news.   
             </p>
-            <p className={`${robotoMono.className} text-white`}>
-                Join to stay up to date with latest news.  
-            </p>
-            <form className="flex mt-8 bg-white py-1 px-2 rounded">
+            <form className="flex mt-8 w-fit items-stretch bg-white p-1 sm:p-2 rounded">
                 <input
                  type="email"
                  placeholder="Enter your email"
@@ -33,7 +31,7 @@ export default function Footer(){
                 <Instagram className="mr-4" color="white" size={30}/>
             </div>
 
-            <div className={`${robotoMono.className} flex justify-between w-full mt-16 relative font-medium py-6 px-8 border-t border-t-white`}>
+            <div className={`${robotoMono.className} w-full mt-16 relative font-medium py-6 px-8 border-t border-t-white flex flex-col md:flex-row items-center justify-between`}>
                 <p className="text-white text-center">2025 DevBlogs. All rights reserved. </p>
                 <p className="text-white text-center">Made with 🤍 by DevBlogs </p>
             </div>
