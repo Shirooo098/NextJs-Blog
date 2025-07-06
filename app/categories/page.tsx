@@ -1,8 +1,9 @@
+'use client'
 import { CategoryType } from "../lib/placeholder";
 import Cards from "../ui/blogs/cards";
 import { manRope, robotoMono } from "../ui/fonts";
 import Footer from "../ui/footer";
-// import { useState } from "react";
+import { useState } from "react";
 
 const categories: CategoryType[] = [
     'Web-Development', 
@@ -14,7 +15,7 @@ const categories: CategoryType[] = [
 
 export default function Categories(){
 
-// const [category, setCategory] = useState<CategoryType | null>(null);
+    const [category, setCategory] = useState<CategoryType | null>(null);
 
 
     return(
@@ -25,17 +26,31 @@ export default function Categories(){
                     <p className={`${robotoMono.className} inline-block w-full px-6 py-2 text-sm md:text-lg lg:text-xl  border-b-2 border-b-black `}>Explore more categories and venture out my journey.</p>
                 </div>
                 <div className="flex flex-wrap gap-2 w-full p-6 border-b-2 border-b-black">
-                    <button className=" py-1.5 md:py-2 px-6 md:px-10 rounded-full border-2">All</button>
-                    {categories.map((category) => (
+                    <button 
+                        onClick={() => setCategory(null)}
+                        className={`py-1.5 md:py-2 px-6 md:px-10 rounded-full border-2 transition-all
+                            ${category === null
+                                ? "bg-black text-white"
+                                : "bg-white text-black" 
+                            }`}
+                    >
+                        All
+                    </button>
+                    {categories.map((categ) => (
                         <button
-                            key={category}
-                            className={`${manRope.className}  py-1.5 md:py-2 px-6 md:px-10 rounded-full border-2 `}
+                            key={categ}
+                            onClick={() => setCategory(categ)}
+                            className={`${manRope.className}  py-1.5 md:py-2 px-6 md:px-10 rounded-full border-2 transition-all 
+                            ${category === categ
+                                ? "bg-black text-white"
+                                : "bg-white text-black" 
+                            } `}
                         >
-                            {category}
+                            {categ}
                         </button>
                     ))}
                 </div>
-                <Cards/>
+                <Cards category={category}/>
             </div>
             <Footer/>
         </>

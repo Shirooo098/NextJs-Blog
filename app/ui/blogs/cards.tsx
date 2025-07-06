@@ -2,8 +2,20 @@ import { cardsData, CategoryType } from "@/app/lib/placeholder"
 import Image from 'next/image';
 import { manRope } from "../fonts";
 
-export default function Cards({limit} : { limit? : number }) {
-    const slicedCards = limit ? cardsData.slice(0, limit) : cardsData;
+export default function Cards({
+    limit, category 
+} : { 
+    limit? : number,
+    category?: CategoryType | null
+}) {
+
+    let filteredCards = cardsData;
+
+    if(category){
+        filteredCards = cardsData.filter((card) => card.category == category);
+    }
+
+    const slicedCards = limit ? filteredCards.slice(0, limit) : filteredCards;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-16 mt-16">
