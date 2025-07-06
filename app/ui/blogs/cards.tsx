@@ -1,11 +1,13 @@
-import { cardsData, CategoryType } from "@/app/data/placeholder"
+import { cardsData, CategoryType } from "@/app/lib/placeholder"
 import Image from 'next/image';
 import { manRope } from "../fonts";
 
-export default function Cards() {
+export default function Cards({limit} : { limit? : number }) {
+    const slicedCards = limit ? cardsData.slice(0, limit) : cardsData;
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-16 mt-16">
-        {cardsData.map((card, index) => (
+        {slicedCards.map((card, index) => (
             <Card
                 key={index}
                 title={card.title}
@@ -17,7 +19,6 @@ export default function Cards() {
     </div>
   )
 }
-
 export function Card({
     title, 
     date,

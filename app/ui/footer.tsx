@@ -11,7 +11,7 @@ export default function Footer(){
             <h2 className={`${robotoMono.className} text-white text-2xl sm:text-3xl lg:text-4xl font-semibold`}>
                 Get Updates
             </h2>
-            <p className={`${robotoMono.className} text-white mt-4 text-center w-[80svw] sm:3/5 text-sm sm:text-base`}>
+            <p className={`${robotoMono.className} text-white mt-4 text-center w-[80svw] sm:w-3/5 text-sm sm:text-base`}>
                 Subscribe to get a fresh update from my blog.
                 Join to stay up to date with latest news.   
             </p>
