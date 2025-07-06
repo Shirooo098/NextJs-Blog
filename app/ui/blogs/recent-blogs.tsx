@@ -9,7 +9,7 @@ export default function RecentBlogs() {
         <h1 className={`${robotoMono.className} capitalize font-bold text-3xl pl-8 border-l-5 border-l-blue-900`}>recent blog posts</h1>
         <Link href="/categories" className={`${robotoMono.className} capitalize font-medium text-blue-900 border-b `}>view all</Link>
       </div>
-        <Cards limit={6}/>
+      <Cards limit={6}/>
     </div>
   )
 }
