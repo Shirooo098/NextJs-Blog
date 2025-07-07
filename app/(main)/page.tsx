@@ -1,5 +1,5 @@
-import RecentBlogs from "./ui/blogs/recent-blogs";
-import Footer from "./ui/footer";
+import RecentBlogs from "../ui/blogs/recent-blogs";
+import Footer from "../ui/footer";
 
 export default function Home() {
   return (

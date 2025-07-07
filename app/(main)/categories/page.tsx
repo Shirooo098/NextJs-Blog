@@ -1,8 +1,8 @@
 'use client'
-import { CategoryType } from "../lib/placeholder";
-import Cards from "../ui/blogs/cards";
-import { manRope, robotoMono } from "../ui/fonts";
-import Footer from "../ui/footer";
+import { CategoryType } from "../../lib/placeholder";
+import Cards from "../../ui/blogs/cards";
+import { manRope, robotoMono } from "../../ui/fonts";
+import Footer from "../../ui/footer";
 import { useState } from "react";
 
 const categories: CategoryType[] = [

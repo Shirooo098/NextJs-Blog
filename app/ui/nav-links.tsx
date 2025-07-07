@@ -13,9 +13,6 @@ const links = [
 
 export default function NavLinks(){
     const pathname = usePathname();
-    const isAdmin = pathname.startsWith("/admin");
-
-    if(isAdmin) return null; 
 
     return(
         <>
