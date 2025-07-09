@@ -1,5 +1,5 @@
 'use client'
-import { CategoryType } from "../../lib/placeholder";
+import { CategoryType } from "../../lib/definitions";
 import Cards from "../../ui/blogs/cards";
 import { manRope, robotoMono } from "../../ui/fonts";
 import Footer from "../../ui/footer";

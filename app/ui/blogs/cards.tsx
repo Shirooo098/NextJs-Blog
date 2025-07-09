@@ -1,4 +1,5 @@
-import { cardsData, CategoryType } from "@/app/lib/placeholder"
+import { cardsData } from "@/app/lib/placeholder"
+import { CategoryType } from "@/app/lib/definitions";
 import Image from 'next/image';
 import { manRope } from "../fonts";
 

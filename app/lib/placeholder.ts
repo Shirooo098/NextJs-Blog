@@ -1,3 +1,5 @@
+import { CategoryType } from "./definitions"
+
 export const cardsData : {
     title: string,
     date: string,
@@ -59,7 +61,4 @@ export const cardsData : {
         imageUrl: '/blogs/typescript.png'
     },
 ]
-
-
-export type CategoryType = 'Web-Development' | 'Javascript' | 'Productivity' | 'Projects';
 
