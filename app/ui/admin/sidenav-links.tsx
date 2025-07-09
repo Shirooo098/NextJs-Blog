@@ -3,15 +3,15 @@ import Link from 'next/link';
 const links = [
     {
         name: 'Home',
-        href: '/dashboard'
+        href: '/admin'
     },
     {
         name: 'Create Blogs',
-        href: '/dashboard/createBlogs'
+        href: '/admin/createBlogs'
     },
     {
         name: 'Blog Lists',
-        href: '/dashboard/blogLists'
+        href: '/admin/blogLists'
     }
 ]
 
