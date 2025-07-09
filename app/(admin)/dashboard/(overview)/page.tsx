@@ -1,7 +1,9 @@
-import Form from "@/app/ui/create-form";
+import Form from "@/app/ui/admin/create-form";
 
 export default function AdminBlog() {
  return(
-    <Form/>
+    <main>
+      <Form/>
+    </main>
  )
 }
