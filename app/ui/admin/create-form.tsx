@@ -5,6 +5,7 @@ import { categoryTypes, State } from "@/app/lib/definitions";
 import { useActionState } from "react";
 import { manRope } from "../fonts";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Form(){
     const initialState: State= {message: null, errors: {}};
@@ -19,6 +20,7 @@ export default function Form(){
                     id="title"
                     type="text"
                     name="title"
+                    placeholder="Title"
                     aria-describedby="title-error"
                     className="input" />
                 <label htmlFor="category">Category</label>
@@ -36,7 +38,7 @@ export default function Form(){
                     name="category"
                     id="category"
                     aria-describedby="category-error"
-                    className="input">
+                    className="input border-r-8 border-transparent outline outline-gray-200">
                     <option value="" disabled>Category</option>
                    {categoryTypes.map((cat) => (
                         <option
@@ -58,10 +60,10 @@ export default function Form(){
                 </div>
 
                 <label htmlFor="description">Description</label>
-                <input
+                <textarea
                     id="description" 
-                    type="text"
                     name="description"
+                    rows={5}
                     aria-describedby="description-error"
                     className="input" />
                 <div id="name-error" aria-live="polite" aria-atomic="true">
@@ -108,9 +110,11 @@ export default function Form(){
                     }
                 </div>  
             </div>
-            <div className="flex justify-end">
-                <button>Cancel</button>
-                <button type="submit">Create Blog</button>
+            <div className="flex justify-end mt-5 gap-2">
+                <Link href="/admin/createBlogs" className="btn btn-secondary">Cancel</Link>
+                <button type="submit" className="btn btn-primary">
+                    Create Blog
+                </button>
             </div>
         </form>
     )

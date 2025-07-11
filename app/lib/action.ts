@@ -3,8 +3,14 @@
 import postgres from "postgres";
 import { z } from "zod";
 import { State } from "./definitions";
+import { createClient } from "@supabase/supabase-js";
+import { v4 as uuidv4 } from 'uuid';
 
 const sql = postgres(process.env.POSTGRES_URL!, {ssl: 'require'});
+const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 const FormSchema = z.object({
     id: z.string(),
@@ -17,9 +23,9 @@ const FormSchema = z.object({
     description: z.string({
         error: 'Please include a description.'
     }),
-    image: z.string({
+    image: z.instanceof(File, {
         error: "Please select an image."
-    })
+    }).refine(file => file.size > 0, "File cannot be empty")
 
 });
 
@@ -33,7 +39,7 @@ export async function createBlog(prevState: State, formData: FormData){
         title: formData.get('title'),
         category: formData.get('category'),
         description: formData.get('description'),
-        image: imageFile?.name ?? ''
+        image: imageFile
     })
 
     if(!validateFields.success){
@@ -49,10 +55,21 @@ export async function createBlog(prevState: State, formData: FormData){
     const {title, category, description, image} = validateFields.data
 
     try {
-        console.log(validateFields.data)
+        
+        const {data: uploadData, error: uploadError} = await uploadImage(image)
+
+        if(uploadError){
+            console.error('Image Upload Failed', uploadError);
+            return { message : "Failed to upload image." };
+        }
+
+        const imageUrl = await getMedia(uploadData!.path);
+
+        console.log(validateFields.data, imageUrl);
+
         await sql`
             INSERT INTO blogs(title, category, description, image)
-            VALUES(${title}, ${category}, ${description}, ${image})
+            VALUES(${title}, ${category}, ${description}, ${imageUrl})
         `
         
         return{
@@ -65,3 +82,34 @@ export async function createBlog(prevState: State, formData: FormData){
         };
     }
 }
+
+async function uploadImage(file: File): Promise<
+    {  data: { path: string } | null, error: Error | null }>
+    {
+   
+    try {
+        const fileName = `blog-images/${uuidv4()}-${file.name}`;
+        const { error } = await supabase
+            .storage
+            .from('upload')
+            .upload(fileName, file);
+
+        if (error) {
+            return { data: null, error: new Error(error.message) };
+        }
+
+        return { data: { path: fileName }, error: null };
+    } catch (error) {
+        return { data: null, error: error instanceof Error ? error : new Error('Unknown upload error') };
+    }
+}
+
+async function getMedia(filePath: string): Promise<string>{
+    const { data: { publicUrl } } = await supabase
+        .storage
+        .from('upload')
+        .getPublicUrl(filePath)
+
+    return publicUrl;
+}
+
