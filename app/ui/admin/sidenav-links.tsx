@@ -4,19 +4,23 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import { robotoMono } from '../fonts';
+import { House, CirclePlus, Trash  } from 'lucide-react'
 
 const links = [
     {
         name: 'Home',
-        href: '/admin'
+        href: '/admin',
+        icon: House
     },
     {
         name: 'Create Blogs',
-        href: '/admin/createBlogs'
+        href: '/admin/createBlogs',
+        icon: CirclePlus
     },
     {
         name: 'Blog Lists',
-        href: '/admin/blogLists'
+        href: '/admin/blogLists',
+        icon: Trash
     }
 ]
 
@@ -25,7 +29,8 @@ export default function SideNavLinks(){
 
     return(
         <>
-            {links.map((link => {
+            {links.map((link) => {
+                const LinkIcon = link.icon
                 return(
                     <Link
                         key={link.name}
@@ -38,10 +43,11 @@ export default function SideNavLinks(){
                             }
                         )} 
                     >
-                        <p className={`${robotoMono.className} text-xl`}>{link.name}</p>
+                        <LinkIcon className=" w-6"/>
+                        <p className={`${robotoMono.className} text-lg hidden md:block`}>{link.name}</p>
                     </Link>
-                )
-            }))}
+                );
+            })}
         </>
     )
     

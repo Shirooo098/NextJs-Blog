@@ -1,5 +1,12 @@
 export type CategoryType = 'Web-Development' | 'Javascript' | 'Productivity' | 'Projects';
 
+export const categoryTypes: CategoryType[] = [
+    'Web-Development',
+    'Javascript',
+    'Productivity',
+    'Projects'
+]
+
 export type State = {
     errors?: {
         title?: string[],
