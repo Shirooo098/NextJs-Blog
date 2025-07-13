@@ -1,17 +1,33 @@
-import { CategoryType } from "@/app/lib/definitions";
+'use client'
+
 import Image from 'next/image';
 import { manRope } from "../fonts";
-import { fetchAllBlogs } from "@/app/lib/data";
+import { useState } from 'react';
+import { useEffect } from 'react';
+import type { Blogs } from '@/app/lib/definitions'
 
-export default async function Cards({
+export default function Cards({
     limit, category 
 } : { 
     limit? : number,
-    category?: CategoryType | null
+    category?: string,
 }) {
+    const [blogs, setBlogs] = useState<Blogs[]>([])
 
-    const data = await fetchAllBlogs();
-    const blogs = data.blogs;
+    useEffect(() => {
+        const fetchBlogsData = async () => {
+            try {
+                const res = await fetch('/api/blogs');
+                const data = await res.json();
+
+                setBlogs(data.blogs);
+            } catch (error) {
+                console.error("Failed to load blogs:", error)
+            }
+        }
+
+        fetchBlogsData();
+    }, [])
 
     const filteredBlogs = category
         ? blogs.filter(blog => blog.category === category)
@@ -43,13 +59,16 @@ export function Card({
 }: {
     title: string,
     date: string,
-    category: CategoryType,
+    category: string,
     imageUrl: string
 }){
     return(
         <article className="relative col-span-1 row-span-1">
             <div className="w-full rounded-xl overflow-hidden flex flex-col items-center">
                 <Image
+                    loading='lazy'
+                    placeholder='empty'
+                    priority={false}
                     src={imageUrl}
                     alt={title}
                     height={500}

@@ -1,13 +1,14 @@
 'use client'
 
 import { createBlog } from "@/app/lib/action";
-import { categoryTypes, State } from "@/app/lib/definitions";
+import { State } from "@/app/lib/definitions";
 import { useActionState } from "react";
 import { manRope } from "../fonts";
 import { useState } from "react";
 import Link from "next/link";
 
 export default function Form(){
+    const categoryTypes = ["Web-Development", "Javascript", "Productivity", "Projects"];
     const initialState: State= {message: null, errors: {}};
     const [state, formAction] = useActionState(createBlog, initialState);
     const [selectedImage, setSelectedImage] = useState("No Image Chosen")

@@ -112,4 +112,3 @@ async function getMedia(filePath: string): Promise<string>{
 
     return publicUrl;
 }
-

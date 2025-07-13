@@ -1,8 +1,3 @@
-export type CategoryType = 'Web-Development' | 'Javascript' | 'Productivity' | 'Projects';
-
-export function isCategoryType(category: string): category is CategoryType{
-    return ['Web-Development', 'Javascript', 'Productivity', 'Projects'].includes(category)
-}
 export type State = {
     errors?: {
         title?: string[],
@@ -11,4 +6,13 @@ export type State = {
         image?: string[] 
     };
     message?: string | null
+}
+
+export type Blogs = {
+    id: string;
+    title: string;
+    category: string;
+    date: string;
+    description: string;
+    imageUrl: string;
 }
