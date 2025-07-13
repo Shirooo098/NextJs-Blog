@@ -1,34 +1,37 @@
-import { cardsData } from "@/app/lib/placeholder"
 import { CategoryType } from "@/app/lib/definitions";
 import Image from 'next/image';
 import { manRope } from "../fonts";
+import { fetchAllBlogs } from "@/app/lib/data";
 
-export default function Cards({
+export default async function Cards({
     limit, category 
 } : { 
     limit? : number,
     category?: CategoryType | null
 }) {
 
-    let filteredCards = cardsData;
+    const data = await fetchAllBlogs();
+    const blogs = data.blogs;
 
-    if(category){
-        filteredCards = cardsData.filter((card) => card.category == category);
-    }
-
-    const slicedCards = limit ? filteredCards.slice(0, limit) : filteredCards;
-
+    const filteredBlogs = category
+        ? blogs.filter(blog => blog.category === category)
+        : blogs;
+    const displayBlogs = limit 
+        ? filteredBlogs.slice(0, limit)
+        : filteredBlogs;
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-16 mt-16">
-        {slicedCards.map((card, index) => (
+        
+        {displayBlogs.map((blog) => (
             <Card
-                key={index}
-                title={card.title}
-                date={card.date}
-                category={card.category}
-                imageUrl={card.imageUrl}
+                key={`${blog.id}`}
+                title={`${blog.title}`}
+                date={`${blog.date}`}
+                category={`${blog.category}`}
+                imageUrl={`${blog.imageUrl}`}
             />
         ))}
+
     </div>
   )
 }

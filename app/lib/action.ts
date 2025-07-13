@@ -83,9 +83,9 @@ export async function createBlog(prevState: State, formData: FormData){
     }
 }
 
-async function uploadImage(file: File): Promise<
-    {  data: { path: string } | null, error: Error | null }>
-    {
+async function uploadImage(file: File): Promise<{
+    data: { path: string } | null,
+    error: Error | null }>{
    
     try {
         const fileName = `blog-images/${uuidv4()}-${file.name}`;
