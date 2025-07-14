@@ -1,5 +1,5 @@
 'use client'
-import { CategoryType } from "../../lib/definitions";
+import { CategoryType } from "@/app/lib/definitions";
 import Cards from "../../ui/blogs/cards";
 import { manRope, robotoMono } from "../../ui/fonts";
 import Footer from "../../ui/footer";
@@ -13,10 +13,9 @@ const categories: CategoryType[] = [
 ]
 
 
+
 export default function Categories(){
-
     const [category, setCategory] = useState<CategoryType | null>(null);
-
 
     return(
         <>

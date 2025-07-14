@@ -10,7 +10,7 @@ export default function Cards({
     limit, category 
 } : { 
     limit? : number,
-    category?: string,
+    category?: string | null,
 }) {
     const [blogs, setBlogs] = useState<Blogs[]>([])
 

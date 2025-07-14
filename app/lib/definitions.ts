@@ -16,3 +16,5 @@ export type Blogs = {
     description: string;
     imageUrl: string;
 }
+
+export type CategoryType = 'Web-Development' | 'Javascript' | 'Productivity' | 'Projects';
