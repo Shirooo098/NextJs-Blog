@@ -1,9 +1,9 @@
 'use client'
 import { CategoryType } from "@/app/lib/definitions";
-import Cards from "../../ui/blogs/cards";
 import { manRope, robotoMono } from "../../ui/fonts";
 import Footer from "../../ui/footer";
 import { useState } from "react";
+import AllBlogs from "@/app/ui/categories/all-blogs";
 
 const categories: CategoryType[] = [
     'Web-Development', 
@@ -47,7 +47,7 @@ export default function Categories(){
                         </button>
                     ))}
                 </div>
-                <Cards category={category}/>
+                <AllBlogs category={category}/>
             </div>
             <Footer/>
         </>

@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 
 export type State = {
     errors?: {
@@ -10,7 +9,7 @@ export type State = {
     message?: string | null
 }
 
-type Blogs = {
+export type Blogs = {
     id: number;
     title: string;
     category: string;
@@ -19,23 +18,11 @@ type Blogs = {
     imageUrl: string;
 }
 
-const fetchRecentBlogs = async (limit = 6 ): Promise<Array<Blogs>> => {
-    const response = await fetch('/api/blogs');
-    const result = await response.json();
-    const blogs: Blogs[] = result.blogs;
-    return blogs.slice(0, limit)
-
-
+export type CardProps = {
+    title: string, 
+    date: string, 
+    category: string,
+    imageUrl: string,
 }
-
-const useRecentBlogs = (limit : number ) => {
-    return useQuery({
-        queryKey: ['blogs', limit],
-        queryFn: () => fetchRecentBlogs(limit)
-    })
-}
-
-export { fetchRecentBlogs, useRecentBlogs };
-
 
 export type CategoryType = 'Web-Development' | 'Javascript' | 'Productivity' | 'Projects';

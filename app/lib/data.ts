@@ -1,23 +1,33 @@
-// 'use server';
+import { Blogs } from "./definitions";
+import { useQuery } from "@tanstack/react-query";
 
-// import postgres from "postgres";
-// import { Blogs } from "./definitions";
+const fetchRecentBlogs = async (limit = 6 ): Promise<Array<Blogs>> => {
+    const response = await fetch('/api/blogs');
+    const result = await response.json();
+    const blogs: Blogs[] = result.blogs;
+    
+    return blogs.slice(0, limit)
+}
 
-// const sql = postgres(process.env.POSTGRES_URL!, {ssl: 'require'});
+const useRecentBlogs = (limit : number ) => {
+    return useQuery({
+        queryKey: ['blogs', limit],
+        queryFn: () => fetchRecentBlogs(limit)
+    })
+}
 
+const fetchAllBlogs = async () : Promise<Array<Blogs>> => {
+    const response = await fetch('/api/blogs');
+    const result = await response.json();
 
-// export async function fetchAllBlogs(){
-//     try {
-//         const blogs = await sql<Blogs[]>
-//             `SELECT id, title, category, date,
-//             description, date, image as "imageUrl"
-//             FROM blogs ORDER BY date desc`
+    return result.blogs as Blogs[];
+}
 
-//         console.log(blogs)
-        
-//         return {blogs}
-//     } catch (error) {
-//         console.error('Database error: ', error)
-//         throw new Error('Failed to fetch card data.');
-//     }
-// }
+const useAllBlogs = () => {
+    return useQuery({
+        queryKey: ['all-blogs'],
+        queryFn: () => fetchAllBlogs()
+    })
+}
+
+export { fetchRecentBlogs, useRecentBlogs, useAllBlogs }
