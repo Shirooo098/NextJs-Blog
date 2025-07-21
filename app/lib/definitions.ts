@@ -21,8 +21,11 @@ type Blogs = {
 
 const fetchRecentBlogs = async (limit = 6 ): Promise<Array<Blogs>> => {
     const response = await fetch('/api/blogs');
-    const data = await response.json();
-    return data.filter((x: Blogs) => x.id <= limit)
+    const result = await response.json();
+    const blogs: Blogs[] = result.blogs;
+    return blogs.slice(0, limit)
+
+
 }
 
 const useRecentBlogs = (limit : number ) => {
@@ -32,6 +35,7 @@ const useRecentBlogs = (limit : number ) => {
     })
 }
 
-export { fetchRecentBlogs, useRecentBlogs};
+export { fetchRecentBlogs, useRecentBlogs };
+
 
 export type CategoryType = 'Web-Development' | 'Javascript' | 'Productivity' | 'Projects';

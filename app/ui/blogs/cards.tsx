@@ -2,41 +2,30 @@
 
 import Image from 'next/image';
 import { manRope } from "../fonts";
-import { useQuery } from '@tanstack/react-query';
-import type { Blogs } from '@/app/lib/definitions'
+import { useRecentBlogs } from '@/app/lib/definitions';
 
 
 
 export default function Cards({
-    limit, category 
+    category 
 } : { 
-    limit? : number,
     category?: string | null,
 }) {
-
-    const { isPending, isError, data, error } = useQuery<Blogs[]>({
-        queryKey: ['blogs'],
-        queryFn: () => 
-            fetch('/api/blogs')
-                .then((res) => res.json())
-                .then((data) => data.blogs()),
-    })
+    const { data, isPending, isError, error } = useRecentBlogs(2);
 
     if(isPending) return <div>Loading...</div>
 
-    if(isError) return <div>An error has occured, {error.message}</div>
+    if(isError) return <div>Error, {error.message}</div>
 
     const filteredBlogs = category
-        ? data.filter(data => data.category === category)
+        ? data?.filter(data => data.category === category)
         : data;
-    const displayBlogs = limit 
-        ? filteredBlogs.slice(0, limit)
-        : filteredBlogs;
+    
     
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-16 mt-16">
         
-        {displayBlogs.map((data) => (
+        {filteredBlogs.map((data) => (
             <Card
                 key={`${data.id}`}
                 title={`${data.title}`}
