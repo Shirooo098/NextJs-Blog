@@ -12,8 +12,6 @@ const categories: CategoryType[] = [
     'Projects'
 ]
 
-
-
 export default function Categories(){
     const [category, setCategory] = useState<CategoryType | null>(null);
 

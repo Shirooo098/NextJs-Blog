@@ -2,9 +2,10 @@
 
 import Image from 'next/image';
 import { manRope } from "../fonts";
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import type { Blogs } from '@/app/lib/definitions'
+
+
 
 export default function Cards({
     limit, category 
@@ -12,39 +13,36 @@ export default function Cards({
     limit? : number,
     category?: string | null,
 }) {
-    const [blogs, setBlogs] = useState<Blogs[]>([])
 
-    useEffect(() => {
-        const fetchBlogsData = async () => {
-            try {
-                const res = await fetch('/api/blogs');
-                const data = await res.json();
+    const { isPending, isError, data, error } = useQuery<Blogs[]>({
+        queryKey: ['blogs'],
+        queryFn: () => 
+            fetch('/api/blogs')
+                .then((res) => res.json())
+                .then((data) => data.blogs()),
+    })
 
-                setBlogs(data.blogs);
-            } catch (error) {
-                console.error("Failed to load blogs:", error)
-            }
-        }
+    if(isPending) return <div>Loading...</div>
 
-        fetchBlogsData();
-    }, [])
+    if(isError) return <div>An error has occured, {error.message}</div>
 
     const filteredBlogs = category
-        ? blogs.filter(blog => blog.category === category)
-        : blogs;
+        ? data.filter(data => data.category === category)
+        : data;
     const displayBlogs = limit 
         ? filteredBlogs.slice(0, limit)
         : filteredBlogs;
+    
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-16 mt-16">
         
-        {displayBlogs.map((blog) => (
+        {displayBlogs.map((data) => (
             <Card
-                key={`${blog.id}`}
-                title={`${blog.title}`}
-                date={`${blog.date}`}
-                category={`${blog.category}`}
-                imageUrl={`${blog.imageUrl}`}
+                key={`${data.id}`}
+                title={`${data.title}`}
+                date={`${data.date}`}
+                category={`${data.category}`}
+                imageUrl={`${data.imageUrl}`}
             />
         ))}
 
