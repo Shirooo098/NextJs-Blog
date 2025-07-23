@@ -3,8 +3,11 @@ import { NextResponse, NextRequest } from "next/server";
 import { sql } from "../route"
 import { BlogContent } from "@/app/lib/definitions"
 
-export async function GET(req: NextRequest, { params }: { params : { id: number } }){
-    const id = params.id
+export async function GET(
+    req: NextRequest, 
+    { params }: { params : { id: string } })
+{
+    const {id} = await params
 
     try {
         const blog = await sql<BlogContent[]>
@@ -20,7 +23,7 @@ export async function GET(req: NextRequest, { params }: { params : { id: number 
 
         console.log(blog);
 
-        if(blog.length === 0){
+        if(!blog){
             return NextResponse.json({ 
                 error: "Blog not Found"
             },{ status: 404 })

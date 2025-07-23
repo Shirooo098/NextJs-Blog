@@ -3,7 +3,7 @@
 import { useBlogById } from "@/app/lib/data";
 import Image from "next/image";
 
-export default function BlogPage({id}: {id: number}){
+export default function BlogPage({id}: {id: string}){
     const { data, isPending, isError, error } = useBlogById(id);
 
     if(isPending) return <div>Loading...</div>

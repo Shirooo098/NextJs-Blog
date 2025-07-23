@@ -34,6 +34,6 @@ export type BlogContent = {
     imageUrl: string;
 }
 
-export type Param = number;
+export type Param = string | number;
 
 export type CategoryType = 'Web-Development' | 'Javascript' | 'Productivity' | 'Projects';
