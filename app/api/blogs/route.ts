@@ -2,7 +2,7 @@ import postgres from "postgres";
 import { Blogs } from "@/app/lib/definitions";
 import { NextResponse } from "next/server";
 
-export const sql = postgres(process.env.POSTGRES_URL!, {ssl: 'require'});
+const sql = postgres(process.env.POSTGRES_URL!, {ssl: 'require'});
 
 export async function GET(){
     try {

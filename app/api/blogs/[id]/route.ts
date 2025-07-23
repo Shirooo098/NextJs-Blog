@@ -1,7 +1,9 @@
 
 import { NextResponse, NextRequest } from "next/server";
-import { sql } from "../route"
 import { BlogContent } from "@/app/lib/definitions"
+import postgres from "postgres";
+
+const sql = postgres(process.env.POSTGRES_URL!, {ssl: 'require'});
 
 export async function GET(
     req: NextRequest, 
