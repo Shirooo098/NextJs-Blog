@@ -1,3 +1,4 @@
+
 import BlogPage from "@/app/ui/blogs/blog";
 import { Metadata } from "next";
 
