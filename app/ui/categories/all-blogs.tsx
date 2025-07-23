@@ -22,6 +22,7 @@ export default function AllBlogs({
         {filteredBlogs.map((blog) => (
             <Card
                 key={`${blog.id}`}
+                id={`${blog.id}`}
                 title={`${blog.title}`}
                 date={`${blog.date}`}
                 category={`${blog.category}`}

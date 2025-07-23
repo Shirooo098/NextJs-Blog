@@ -10,7 +10,7 @@ export type State = {
 }
 
 export type Blogs = {
-    id: number;
+    id: string;
     title: string;
     category: string;
     date: string;
@@ -19,6 +19,7 @@ export type Blogs = {
 }
 
 export type CardProps = {
+    id: string,
     title: string, 
     date: string, 
     category: string,
@@ -26,7 +27,7 @@ export type CardProps = {
 }
 
 export type BlogContent = {
-    id: number;
+    id: string;
     title: string;
     category: string;
     date: string;
