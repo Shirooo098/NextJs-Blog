@@ -25,4 +25,15 @@ export type CardProps = {
     imageUrl: string,
 }
 
+export type BlogContent = {
+    id: number;
+    title: string;
+    category: string;
+    date: string;
+    description: string;
+    imageUrl: string;
+}
+
+export type Param = number;
+
 export type CategoryType = 'Web-Development' | 'Javascript' | 'Productivity' | 'Projects';
