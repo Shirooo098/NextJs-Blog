@@ -2,11 +2,12 @@
 
 import { useRecentBlogs } from '@/app/lib/data';
 import Card from '@/app/components/Card';
+import Loading from '@/app/(main)/loading';
 
 export default function RecentBlogsCard() {
     const { data, isPending, isError, error } = useRecentBlogs(6);
 
-    if(isPending) return <div>Loading...</div>
+    if(isPending) return <div><Loading/></div>
 
     if(isError) return <div>Error, {error.message}</div>
 

@@ -1,5 +1,5 @@
-import { SkeletonCard } from "@/app/ui/skeletons";
+import { BlogsSkeleton } from "@/app/ui/skeletons";
 
 export default function Loading(){
-    return <SkeletonCard/>
+    return <BlogsSkeleton/>
 }

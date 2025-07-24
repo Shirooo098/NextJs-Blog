@@ -1,5 +1,6 @@
 import { useAllBlogs } from "@/app/lib/data";
 import Card from "@/app/components/Card";
+import Loading from "@/app/(main)/loading";
 
 export default function AllBlogs({
     category
@@ -8,7 +9,7 @@ export default function AllBlogs({
 }){
     const { data, isPending, isError, error } = useAllBlogs();
 
-    if(isPending) return <div>Loading...</div>
+    if(isPending) return <div><Loading/></div>
 
     if(isError) return <div>Error, {error.message}</div>
 

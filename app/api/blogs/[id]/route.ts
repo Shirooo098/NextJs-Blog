@@ -1,4 +1,3 @@
-
 import { NextResponse, NextRequest } from "next/server";
 import { BlogContent } from "@/app/lib/definitions"
 import postgres from "postgres";
@@ -14,14 +13,14 @@ export async function GET(
     try {
         const blog = await sql<BlogContent[]>
             `SELECT 
-                blogs.id,
-                blogs.title,
-                blogs.category,
-                blogs.date,
-                blogs.description,
-                blogs.image as "imageUrl"
+                id,
+                title,
+                category,
+                date,
+                description,
+                image as "imageUrl"
             FROM blogs
-            WHERE blogs.id = ${id}`
+            WHERE id = ${id}`
 
         console.log(blog);
 
