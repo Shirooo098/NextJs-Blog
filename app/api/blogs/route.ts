@@ -9,7 +9,8 @@ export async function GET(){
         const blogs = await sql<Blogs[]>
             `SELECT id, title, category, date,
             description, date, image as "imageUrl"
-            FROM blogs ORDER BY date desc`
+            FROM blogs ORDER BY date desc 
+            LIMIT 6`
 
         console.log(blogs)
         
