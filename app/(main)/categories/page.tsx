@@ -25,7 +25,7 @@ export default function Categories(){
                 <div className="flex flex-wrap w-full gap-2 p-6 border-b-2 border-b-black">
                     <button 
                         onClick={() => setCategory(null)}
-                        className={`py-1.5 md:py-2 px-6 md:px-10 rounded-full border-2 transition-all
+                        className={`py-1.5 md:py-2 px-6 md:px-10 rounded-full border-2 border-black transition-all
                             ${category === null
                                 ? "bg-black text-white"
                                 : "bg-white text-black" 
@@ -37,7 +37,7 @@ export default function Categories(){
                         <button
                             key={categ}
                             onClick={() => setCategory(categ)}
-                            className={`${manRope.className}  py-1.5 md:py-2 px-6 md:px-10 rounded-full border-2 transition-all 
+                            className={`${manRope.className}  py-1.5 md:py-2 px-6 md:px-10 rounded-full border-2 border-black transition-all 
                             ${category === categ
                                 ? "bg-black text-white"
                                 : "bg-white text-black" 

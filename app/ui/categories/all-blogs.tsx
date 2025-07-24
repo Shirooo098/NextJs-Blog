@@ -17,6 +17,14 @@ export default function AllBlogs({
         ? data.filter(data => data.category === category)
         : data
 
+    if(category && filteredBlogs.length === 0){
+        return (
+            <div className="flex justify-center text-2xl mt-7 lg:text-4xl  md:text-3xl ">
+                No blogs yet for category: {category}
+            </div>
+        )       
+    }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-16 mt-16">
         
