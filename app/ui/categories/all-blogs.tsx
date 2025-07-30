@@ -1,6 +1,7 @@
 import { useAllBlogs } from "@/app/lib/data";
 import Card from "@/app/components/Card";
 import Loading from "@/app/(main)/loading";
+import { getGridClass } from "@/app/lib/utils";
 
 export default function AllBlogs({
     category
@@ -25,8 +26,10 @@ export default function AllBlogs({
         )       
     }
 
+    const gridClass = getGridClass(data.length)
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-16 mt-16">
+    <div className={`grid ${gridClass} gap-16 mt-16`}>
         
         {filteredBlogs.map((blog) => (
             <Card

@@ -3,6 +3,7 @@
 import { useRecentBlogs } from '@/app/lib/data';
 import Card from '@/app/components/Card';
 import Loading from '@/app/(main)/loading';
+import { getGridClass } from '@/app/lib/utils';
 
 export default function RecentBlogsCard() {
     const { data, isPending, isError, error } = useRecentBlogs(6);
@@ -11,8 +12,10 @@ export default function RecentBlogsCard() {
 
     if(isError) return <div>Error, {error.message}</div>
 
+    const gridClass = getGridClass(data.length)
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-16 mt-16">
+    <div className={`grid ${gridClass} gap-16 mt-16`}>
         
         {data.map((blog) => (
             <Card
