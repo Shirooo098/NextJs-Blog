@@ -7,7 +7,7 @@ export default function Nav(){
         <div className="flex justify-center h-12">
             <DevblogLogo variant="light"/>
         </div>
-        <div className="flex justify-center w-full sm:w-80">
+        <div className="flex justify-center w-full mt-5 sm:mt-0 sm:w-80">
             <NavLinks/>
         </div>
        </div>
