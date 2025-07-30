@@ -26,8 +26,7 @@ export default function BlogPage({id}: {id: string}){
                         priority={false}
                         src={data.imageUrl}
                         alt={data.title}
-                        height={500}
-                        width={500}
+                        fill={true}
                         className="z-0 aspect-square size-full object-cover object-center"
                     />
                 </div>                   
