@@ -1,4 +1,6 @@
 import Image from "next/image"
+import { manRope } from "./fonts"
+import Link from "next/link"
 
 export default function Hero(){
     return(
@@ -9,10 +11,27 @@ export default function Hero(){
                 priority={true}
                 src="/home.jpg"
                 alt="Building Web Applications"
-                height={500}
-                width={500}
+                fill
                 className="size-full object-center object-cover rounded-3xl -z-10"
             />
+            <div className="w-full lg:w-3/4 p-6 sm:p-8 md:p-12 lg:p-16 
+            flex flex-col items-start justify-center z-0 text-white">
+                <button className={`${manRope.className}
+                inline-block py-2 sm:py-3 px-6 sm:px-10
+                bg-black text-white rounded-full
+                capitalize border-2 border-solid border-white
+                hover:scale-105 transition-all ease duration-200
+                text-sm sm:text-base`}>
+                <Link href={'/categories'}>Web Development</Link>
+                </button>
+                <Link href={'/'} className="mt-6">
+                    <h1 className={`${manRope.className} 
+                        font-bold capitalize text-lg sm:text-xl md:text-3xl lg:text-4xl
+                    `}>
+                        Building a Modern Progressive Web Application: Using Current Trend Frameworks
+                    </h1>
+                </Link>
+            </div>
         </article>
     )
 }
