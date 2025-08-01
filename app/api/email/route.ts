@@ -16,6 +16,7 @@ export async function POST(req: NextRequest){
         }
 
         sgMail.send(msg);
+        console.log(msg)
 
         return NextResponse.json(
             { message: "Email sent successfully" },
