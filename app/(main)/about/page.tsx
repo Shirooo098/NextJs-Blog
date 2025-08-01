@@ -1,4 +1,4 @@
-import { manRope } from "@/app/ui/fonts"
+import { manRope, robotoMono } from "@/app/ui/fonts"
 import Footer from "@/app/ui/footer"
 import Image from "next/image"
 
@@ -19,12 +19,22 @@ export default function About() {
           fill
           className="size-full object-center object-cover rounded-3xl -z-10"
         />
-
       </main>
       </div>
-      <section className={`${manRope.className} flex flex-col justify-center w-full md:w-1/2 px-5 xs:p-10 pb-10 pt-10 lg:px-16`}>
-          
-      </section>
+
+      <div className="w-full flex flex-col p-5 xs:p-10 sm:p-12 lg:p-20 border-t-2 border-b-2 border-black">
+        <h2 className={`${robotoMono.className} font-semibold text-lg sm:text-3xl md:text-4xl text-blue-900`}>My Favorite Tools are...</h2>
+        <ul className="flex flex-wrap mt-8 justify-center xs:justify-start">
+          <li className="tools">Next.js</li>
+          <li className="tools">Tailwind CSS</li>
+          <li className="tools">Figma</li>
+          <li className="tools">PostgresSQL</li>
+          <li className="tools">MySQL</li>
+          <li className="tools">Node.js</li>
+          <li className="tools">Express.js</li>
+          <li className="tools">PHP</li>
+        </ul>
+      </div>
       <Footer/>
     </>
   )

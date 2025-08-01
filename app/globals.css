@@ -39,6 +39,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -77,6 +78,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --breakpoint-xs: 475px;
 }
 
 @layer components{
@@ -98,6 +100,16 @@
   .btn-secondary{
     @apply bg-gray-100 text-black 
   }
+
+  .tools{
+    @apply font-semibold inline-block capitalize
+    text-base xs:text-lg sm:text-xl md:text-2xl 
+    py-2 xs:py-3 sm:py-4 lg:py-5 px-4 xs:px-6 sm:px-8 lg:px-12
+    border-2 border-black rounded 
+    mr-3 mb-3 xs:mr-4 xs:mb-4 md:mr-6 md:mb-6
+    hover:scale-105 transition-all ease-in duration-200 cursor-pointer; 
+  } 
+
 }
 
 .dark {
@@ -142,3 +154,5 @@
     @apply bg-background text-foreground;
   }
 }
+
+
