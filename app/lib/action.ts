@@ -5,7 +5,6 @@ import { z } from "zod";
 import { State, EmailState } from "./definitions";
 import { createClient } from "@supabase/supabase-js";
 import { v4 as uuidv4 } from 'uuid';
-import axios from "axios";
 
 const sql = postgres(process.env.POSTGRES_URL!, {ssl: 'require'});
 const supabase = createClient(
@@ -154,11 +153,12 @@ Promise<EmailState>{
         const payload = { name, email, message, date }
         console.log(payload);
 
-        const res = await axios.post('/api/email', payload, {
-            headers: { 'Content-Type': 'application/json'}
+        const res = await fetch('/api/email', {
+            method: "POST", 
+            body: JSON.stringify(payload)
         })
 
-        return res.data;
+        return await res.json();
     } catch (error) {
         console.error(error);
         return{
