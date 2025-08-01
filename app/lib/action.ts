@@ -147,9 +147,8 @@ Promise<EmailState>{
 
     const {name, email, message} = validateFields.data;
     const date = new Date().toISOString().split('T')[0];
-    const baseUrl = 
-        (process.env.NEXT_PUBLIC_PROD_API_URL ? `https://${process.env.NEXT_PUBLIC_PROD_API_URL}` 
-        : 'http://localhost:3000');
+    const baseUrl = process.env.NEXT_PUBLIC_PROD_API_URL || 'http://localhost:3000'
+
 
     try {
 
@@ -159,7 +158,7 @@ Promise<EmailState>{
         const res = await fetch(`${baseUrl}/api/email`, {
             method: "POST", 
             headers: {
-                'Content-Type': 'application.json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(payload)
         })
