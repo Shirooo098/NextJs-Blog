@@ -147,11 +147,14 @@ Promise<EmailState>{
 
     const {name, email, message} = validateFields.data;
     const date = new Date().toISOString().split('T')[0];
+    const baseUrl = 
+        (process.env.NEXT_PUBLIC_PROD_API_URL ? `https://${process.env.NEXT_PUBLIC_PROD_API_URL}` 
+        : 'http://localhost:3000');
 
     try {
 
         const payload = { name, email, message, date }
-        console.log(payload);
+        console.log('Sending to:', `${baseUrl}/api/email`, payload);
 
         const res = await fetch('/api/email', {
             method: "POST", 
