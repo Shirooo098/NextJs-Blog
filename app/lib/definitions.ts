@@ -9,6 +9,16 @@ export type State = {
     message?: string | null
 }
 
+export type EmailState = {
+    errors?: {
+        name?: string[],
+        email?: string[], 
+        subject?: string[],
+        message?: string[],
+    };
+    errorMessage: string | null,
+}
+
 export type Blogs = {
     id: string;
     title: string;

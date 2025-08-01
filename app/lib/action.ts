@@ -2,9 +2,10 @@
 
 import postgres from "postgres";
 import { z } from "zod";
-import { State } from "./definitions";
+import { State, EmailState } from "./definitions";
 import { createClient } from "@supabase/supabase-js";
 import { v4 as uuidv4 } from 'uuid';
+import axios from "axios";
 
 const sql = postgres(process.env.POSTGRES_URL!, {ssl: 'require'});
 const supabase = createClient(
@@ -111,4 +112,57 @@ async function getMedia(filePath: string): Promise<string>{
         .getPublicUrl(filePath)
 
     return publicUrl;
+}
+
+
+const ContactFormSchema = z.object({
+    name: z.string({ message: 'Name is required.'}),
+    email: z.string().email({
+        message: 'Please enter a valid email.'
+    }),
+    subject: z.string({ message: 'Subject is required.'}),
+    message: z.string({ message: 'Message is required.'}),
+    date: z.string()
+})
+
+const CreateEmail = ContactFormSchema.omit({ date: true })
+
+export async function submitEmail(prevState: EmailState, formData: FormData):
+Promise<EmailState>{
+    const validateFields = CreateEmail.safeParse({
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message')
+    });
+
+    if(!validateFields.success){
+        const { fieldErrors, formErrors } = validateFields.error.flatten();
+
+        return {
+            errors: fieldErrors,
+            errorMessage: formErrors.length > 0 ? formErrors[0] : 
+                'Missing Fields. Failed to send email'
+        }
+    }
+
+    const {name, email, message} = validateFields.data;
+    const date = new Date().toISOString().split('T')[0];
+
+    try {
+
+        const payload = { name, email, message, date }
+        console.log(payload);
+
+        const res = await axios.post('http://localhost:3000/api/email', payload, {
+            headers: { 'Content-Type': 'application/json'}
+        })
+
+        return res.data;
+    } catch (error) {
+        console.error(error);
+        return{
+            errorMessage: 'Something went wrong: Failed to Submit Email.'
+        }
+    }
 }
