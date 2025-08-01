@@ -156,7 +156,7 @@ Promise<EmailState>{
         const payload = { name, email, message, date }
         console.log('Sending to:', `${baseUrl}/api/email`, payload);
 
-        const res = await fetch('/api/email', {
+        const res = await fetch(`${baseUrl}/api/email`, {
             method: "POST", 
             headers: {
                 'Content-Type': 'application.json',
