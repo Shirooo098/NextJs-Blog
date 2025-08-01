@@ -158,7 +158,7 @@ Promise<EmailState>{
         //     headers: { 'Content-Type': 'application/json'}
         // })
 
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_PROD_URL}`, payload, {
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_PROD_URL}/api/email`, payload, {
             headers: { 'Content-Type': 'application/json'}
         })
 
