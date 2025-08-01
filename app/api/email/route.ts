@@ -25,20 +25,9 @@ export async function POST(req: NextRequest){
 
     console.log(mailOptions)
 
-    const sendMailPromise = () => {
-        new Promise<string>((resolve, reject) => {
-            transport.sendMail(mailOptions, (err) => {
-                if(!err){
-                    resolve('Email Sent!');
-                }else{
-                    reject(err.message)
-                }
-            })
-        })
-    }
 
     try {
-        await sendMailPromise();
+        await transport.sendMail(mailOptions);
         return NextResponse.json({ message: 'Email Sent!'});
     } catch (error) {
         console.error(error);
