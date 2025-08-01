@@ -7,8 +7,10 @@ export default function Contact() {
     <>
       <div className="w-full inline-block py-6">
         <main className="flex flex-col justify-center size-full">
-            <h1 className={`${manRope.className} font-bold text-8xl text-center`}>Let&apos;s connect!</h1>
-            <ContactForm/>
+            <h1 className={`${manRope.className} font-bold text-7xl sm:text-8xl text-center`}>Let&apos;s connect!</h1>
+            <div className="w-full">
+              <ContactForm/>
+            </div>
         </main>
       </div>
       <Footer/>

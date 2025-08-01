@@ -25,7 +25,6 @@ export async function POST(req: NextRequest){
 
     console.log(mailOptions)
 
-
     try {
         await transport.sendMail(mailOptions);
         return NextResponse.json({ message: 'Email Sent!'});
